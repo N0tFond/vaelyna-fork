@@ -1,0 +1,39 @@
+{
+  "name": "vaelyna",
+  "version": "1.1.4",
+  "description": "A simple opensource Discord bot for your server.",
+  "keywords": [
+    "discordjs",
+    "selunik",
+    "wehosting",
+    "qrlmza",
+    "bot",
+    "free",
+    "javascript",
+    "js",
+    "2025",
+    "opensource",
+    "discord"
+  ],
+  "homepage": "https://github.com/qrlmza/vaelyna#readme",
+  "bugs": {
+    "url": "https://github.com/qrlmza/vaelyna/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qrlmza/vaelyna.git"
+  },
+  "license": "Apache-2.0",
+  "author": "selunik",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
+    "fs": "^0.0.1-security"
+  }
+}
