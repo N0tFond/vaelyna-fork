@@ -8,6 +8,7 @@ const client = new Discord.Client({
         Discord.GatewayIntentBits.MessageContent,
         Discord.GatewayIntentBits.GuildMembers,
         Discord.GatewayIntentBits.GuildPresences,
+        Discord.GatewayIntentBits.GuildVoiceStates
     ]
 });
 
@@ -24,6 +25,10 @@ interactionHandler(client); // Gestion des interactions
 
 const guildUserJoin = require('./handlers/guildUserJoin.js');
 guildUserJoin(client); // Gestion des nouveaux membres
+
+const createUserVoice = require('./handlers/createUserVoice.js');
+createUserVoice(client); // Gestion des salons à la volé
+
 
 // Connexion à l'api Discord pour lancer le bot.
 client.login(process.env.TOKEN);
