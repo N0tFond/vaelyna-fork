@@ -16,8 +16,8 @@ const guildUserJoin = (client) => {
 
             await member.roles.add(role).catch(err => {
                 console.error(`⚠️ → Impossible d'ajouter le rôle ${role.name} à l'utilisateur ${member.user.tag}.`, err);
-                return;
             });
+            
             console.log(`✅ → Le rôle ${role.name} a été ajouté à l'utilisateur ${member.user.tag}.`);
             
             const avatarURL = member.user.displayAvatarURL({ format: 'png', size: 128 }) || member.user.defaultAvatarURL;

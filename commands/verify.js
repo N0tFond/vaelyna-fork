@@ -10,6 +10,7 @@ module.exports = {
     async execute(interaction) {
 
         const memberRoleId = process.env.MEMBER_ROLE
+        const nonVerifiedRoleId = process.env.NONVERIF_ROLE
         const basicsRoleId = process.env.BASICS_ROLE
         const boostRoleId = process.env.BOOST_ROLE
         const levelsRoleId = process.env.LEVELS_ROLE
@@ -85,6 +86,7 @@ module.exports = {
 
                 try {
                     await interaction.member.roles.add([memberRoleId, basicsRoleId, boostRoleId, levelsRoleId, notifsRoleId, genderRoleId]);
+                    await interaction.member.roles.remove(nonVerifiedRoleId);
                     
                     await i.update({
                         content: `✅ → Vous avez été vérifié avec succès en tant que ${genderLabel} !`,
