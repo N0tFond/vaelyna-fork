@@ -29,6 +29,9 @@ guildUserJoin(client); // Gestion des nouveaux membres
 const createUserVoice = require('./handlers/createUserVoice.js');
 createUserVoice(client); // Gestion des salons à la volé
 
+const createThreadPresntation = require('./handlers/createThreadPresntation.js');
+createThreadPresntation(client); // Gestion de la création automatique de threads dans le salon présentation
+
 
 // Connexion à l'api Discord pour lancer le bot.
 client.login(process.env.TOKEN);
