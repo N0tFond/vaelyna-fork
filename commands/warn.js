@@ -10,13 +10,13 @@ module.exports = {
             option
                 .setName("utilisateur")
                 .setDescription("Utilisateur à avertir")
-                .setRequire(true)
+                .setRequired(true)
         )
         .addStringOption(option => 
             option
                 .setName("raiso")
                 .setDescription("Raison de l'avertissement")
-                .setRequire(true)
+                .setRequired(true)
         ),
 
     async execute(interaction) {
