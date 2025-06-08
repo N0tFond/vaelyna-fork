@@ -16,6 +16,7 @@ module.exports = {
         const levelsRoleId = process.env.LEVELS_ROLE
         const notifsRoleId = process.env.NOTIFS_ROLE
         const boyRoleId = process.env.HOMME_ROLE
+        const colorRoleId = process.env.COLOR_ROLE
         const girlRoleId = process.env.FEMME_ROLE
         const nonBinaryRoleId = process.env.NONBINARIE_ROLE
 
@@ -85,7 +86,7 @@ module.exports = {
                 }
 
                 try {
-                    await interaction.member.roles.add([memberRoleId, basicsRoleId, boostRoleId, levelsRoleId, notifsRoleId, genderRoleId]);
+                    await interaction.member.roles.add([memberRoleId, basicsRoleId, boostRoleId, levelsRoleId, notifsRoleId, colorRoleId, genderRoleId]);
                     await interaction.member.roles.remove(nonVerifiedRoleId);
                     
                     await i.update({
