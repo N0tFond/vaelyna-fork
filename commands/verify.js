@@ -115,7 +115,7 @@ module.exports = {
                         .setDescription(`- Pense à lire nos règles : <#1378581312172068976>\n- Tu peux te présenter dans le salon <#1378583912606863370>.\n- Si tu as des questions, un problème, n'hésite pas à te rendre dans le salon <#1378581147419807765>.`)
                         .setTimestamp()
                         .setImage('https://i.pinimg.com/originals/b3/4b/d0/b34bd0ef85660338e6082332e0d31a7f.gif')
-                        .setFooter({ text: `Nous sommes désormais sur ${memberCount} le serveur`, iconURL: avatarURL });
+                        .setFooter({ text: `Nous sommes désormais sur ${memberCount} le serveur.`, iconURL: avatarURL });
 
                     var channel = member.guild.channels.cache.get(welcomeChannel);
                     await channel.send({ embeds: [embed] });
