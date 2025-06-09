@@ -1,157 +1,140 @@
-# 🤖 Vaelyna - Bot Discord Open Source
+# 🤖 Vaelyna - Discord Bot
 
-Un bot Discord simple et open source pour votre serveur.
-
-## 📋 Table des matières
-
-- [🤖 Vaelyna - Bot Discord Open Source](#-vaelyna---bot-discord-open-source)
-  - [📋 Table des matières](#-table-des-matières)
-  - [✨ Fonctionnalités](#-fonctionnalités)
-  - [🚀 Installation](#-installation)
-    - [Prérequis](#prérequis)
-    - [Installation locale](#installation-locale)
-  - [⚙️ Configuration](#️-configuration)
-  - [🎯 Utilisation](#-utilisation)
-  - [📝 Commandes](#-commandes)
-    - [Commandes générales](#commandes-générales)
-    - [Commandes de modération](#commandes-de-modération)
-  - [🤝 Contribution](#-contribution)
-    - [Guidelines de contribution](#guidelines-de-contribution)
-  - [🐛 Signaler des bugs](#-signaler-des-bugs)
-  - [💬 Support](#-support)
-  - [📄 Licence](#-licence)
-  - [🙏 Remerciements](#-remerciements)
-
-## ✨ Fonctionnalités
-
-- 🛡️ **Modération** - Outils de modération pour maintenir l'ordre sur votre serveur
-- 🎮 **Divertissement** - Commandes amusantes et jeux interactifs
-- 📊 **Utilitaires** - Commandes utiles pour la gestion du serveur
-- 🔧 **Personnalisable** - Configuration flexible selon vos besoins
-
-## 🚀 Installation
-
-### Prérequis
-
-- [Node.js](https://nodejs.org/) v16.0.0 ou plus récent
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
-- Un bot Discord créé sur le [Discord Developer Portal](https://discord.com/developers/applications)
-
-### Installation locale
-
-1. **Clonez le dépôt**
-   ```bash
-   git clone https://github.com/qrlmza/vaelyna.git
-   cd vaelyna
-   ```
-
-2. **Installez les dépendances**
-   ```bash
-   npm install
-   # ou
-   yarn install
-   ```
-
-3. **Configurez le bot** (voir section Configuration)
-
-4. **Démarrez le bot**
-   ```bash
-   npm start
-   # ou
-   yarn start
-   ```
-
-## ⚙️ Configuration
-
-1. **Créez un fichier `.env`** à la racine du projet en utilisant le fichier `.env.example`.
-
-2. **Obtenez votre token Discord :**
-   - Rendez-vous sur le [Discord Developer Portal](https://discord.com/developers/applications)
-   - Créez une nouvelle application ou sélectionnez une existante
-   - Allez dans l'onglet "Bot"
-   - Copiez le token et l'identifiant de votre application et ajoutez-les dans votre fichier `.env`
-
-3. **Invitez le bot sur votre serveur :**
-   - Dans le Developer Portal, allez dans "OAuth2" > "URL Generator"
-   - Sélectionnez les scopes `bot` et `applications.commands`
-   - Sélectionnez les permissions nécessaires
-   - Utilisez l'URL générée pour inviter le bot
-
-## 🎯 Utilisation
-
-Une fois le bot configuré et démarré, il sera en ligne sur votre serveur Discord. Utilisez les commandes slash présentes sur le bot.
-
-## 📝 Commandes
-
-### Commandes générales
-- `/help` - Affiche la liste des commandes disponibles
-- `/ping` - Teste la latence du bot
-- `/verify` - Système de vérification anti bots
-- `/avatar @user` - Obtenir l'avatar d'un utilisateur
-- `/poll <choix1, choix2, choix3...>` - Créer un sondage sur votre serveur
-- `/search <query>` - Faire une recherche google
-- `/infos` - Obtenir les informations sur le bot
-
-
-### Commandes de modération
-- `/ban @user <raison>` - Bannir un utilisateur
-- `/kick @user <raison>` - Expulser un utilisateur
-- `/clear <nombre>` - Supprime des messages
-- `/user @user <sanctions / infos>` - Permet de vérifier les sanctions et informations sur un utilisateur
-
-*Note : La liste complète des commandes peut être obtenue avec `/help`*
-
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Voici comment contribuer :
-
-1. **Forkez le projet**
-2. **Créez une branche pour votre fonctionnalité**
-   ```bash
-   git checkout -b feature/nouvelle-fonctionnalite
-   ```
-3. **Committez vos changements**
-   ```bash
-   git commit -m "Ajout d'une nouvelle fonctionnalité"
-   ```
-4. **Poussez vers la branche**
-   ```bash
-   git push origin feature/nouvelle-fonctionnalite
-   ```
-5. **Ouvrez une Pull Request**
-
-### Guidelines de contribution
-
-- Respectez le style de code existant
-- Ajoutez des tests pour les nouvelles fonctionnalités
-- Documentez les nouvelles fonctionnalités
-- Testez vos changements avant de soumettre une PR
-
-## 🐛 Signaler des bugs
-
-Si vous trouvez un bug, veuillez ouvrir une [issue](https://github.com/qrlmza/vaelyna/issues) avec :
-- Une description claire du problème
-- Les étapes pour reproduire le bug
-- Votre environnement (OS, version de Node.js, etc.)
-- Les logs d'erreur si disponibles
-
-## 💬 Support
-
-- **Issues GitHub** : [github.com/qrlmza/vaelyna/issues](https://github.com/qrlmza/vaelyna/issues)
-- **Discord** : Rejoignez notre [serveur de support](https://discord.gg/FgtXcsQ8yv)
-
-## 📄 Licence
-
-Ce projet est sous licence [Apache 2.0](./LICENSE). Voir le fichier `LICENSE` pour plus de détails.
-
-## 🙏 Remerciements
-
-- Merci à tous les contributeurs qui ont participé à ce projet
-- [Discord.js](https://discord.js.org/) pour la librairie Discord
-- La communauté Discord pour le support et les retours
+Vaelyna est un bot Discord open source, moderne, personnalisable et facile à déployer pour la gestion de communautés. Il propose des outils de modération avancés, des utilitaires, des interactions ludiques et une intégration base de données pour le suivi des sanctions.
 
 ---
 
-**⭐ N'oubliez pas de donner une étoile au projet si vous l'aimez !**
+## ✨ Fonctionnalités principales
 
-Fait avec ❤️ par [selunik](https://github.com/qrlmza)
+- 🛡️ **Modération avancée** :
+  - Warn, ban, clear, kick, gestion des tickets, logs de sanctions en base de données
+- 👮 **Vérification anti-bots** :
+  - Commande `/verify` avec gestion des rôles et sélection du genre
+- 🎫 **Tickets de support** :
+  - Création de salons privés, gestion par boutons, logs
+- 📊 **Sondages** :
+  - Commande `/sondage` avec réactions automatiques
+- 👤 **Fiches utilisateurs** :
+  - Commande `/user` pour voir infos classiques ou toutes les sanctions/grades
+- 🎮 **Divertissement** :
+  - Commandes fun (café, avatar, etc.)
+- ℹ️ **Utilitaires** :
+  - Ping, infos bot, aide, etc.
+- 🔒 **Gestion fine des rôles et permissions**
+- 💾 **Connexion MySQL** :
+  - Stockage des warns et bans
+
+---
+
+## 🚀 Installation rapide
+
+### Prérequis
+- Node.js v16 ou plus récent
+- Un bot Discord créé sur le [Discord Developer Portal](https://discord.com/developers/applications)
+- Un accès à une base MySQL (pour le suivi des sanctions)
+
+### Déploiement
+```bash
+# Clonez le projet
+$ git clone https://github.com/qrlmza/vaelyna.git
+$ cd vaelyna
+
+# Installez les dépendances
+$ npm install
+
+# Copiez le fichier d'exemple d'environnement
+$ copy .env.example .env  # (Windows)
+# ou
+$ cp .env.example .env    # (Linux/Mac)
+
+# Remplissez le fichier .env avec vos infos Discord et MySQL
+
+# Lancez le bot
+$ npm start
+```
+
+---
+
+## ⚙️ Configuration
+
+- **.env** : renseignez vos identifiants Discord, IDs de rôles/salons, et accès MySQL.
+- **Base de données** :
+  - Créez les tables `warns` et `bans` :
+    ```sql
+    CREATE TABLE warns (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      author VARCHAR(255),
+      user VARCHAR(255),
+      reason VARCHAR(255),
+      date VARCHAR(255)
+    );
+    CREATE TABLE bans (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      author VARCHAR(255),
+      user VARCHAR(255),
+      reason VARCHAR(255),
+      date VARCHAR(255)
+    );
+    ```
+
+---
+
+## 📝 Commandes principales
+
+- `/help` — Affiche toutes les commandes et leur usage
+- `/user @user type:normales|server` — Infos classiques ou fiche serveur complète (rôles, warns, bans)
+- `/warn @user raison` — Avertir un membre (log en base)
+- `/ban @user raison` — Bannir un membre (log en base)
+- `/clear nombre` — Supprimer des messages
+- `/ticket sujet` — Ouvrir un ticket de support
+- `/sondage titre choix` — Créer un sondage
+- `/verify` — Vérification anti-bots
+- `/avatar` — Voir l'avatar d'un membre
+- `/infos` — Infos sur le bot
+- `/cafe` — Commande fun
+
+*La liste complète et détaillée est accessible via `/help` sur le serveur.*
+
+---
+
+## 📦 Structure du projet
+
+```
+vaelyna/
+├── commands/         # Toutes les commandes slash
+├── events/           # Gestion des événements Discord
+├── handlers/         # Initialisation, routing, listeners
+├── db.js             # Connexion MySQL
+├── .env.example      # Exemple de configuration
+├── index.js          # Entrée principale du bot
+├── package.json      # Dépendances et scripts
+```
+
+---
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues !
+- Forkez le projet
+- Créez une branche (`feature/ma-fonctionnalite`)
+- Faites vos modifications
+- Ouvrez une Pull Request
+
+Merci de respecter le style de code, d'ajouter des tests et de documenter vos ajouts.
+
+---
+
+## 🐛 Support & Bugs
+
+- [Issues GitHub](https://github.com/qrlmza/vaelyna/issues)
+- [Serveur Discord de support](https://discord.gg/FgtXcsQ8yv)
+
+---
+
+## 📄 Licence
+
+Projet sous licence [Apache 2.0](./LICENSE).
+
+---
+
+Fait avec ❤️ par [selunik](https://github.com/qrlmza) et la communauté.
