@@ -25,21 +25,26 @@ module.exports = {
         const user = interaction.options.getUser('utilisateur');
         const type = interaction.options.getString('type');
         const member = await interaction.guild.members.fetch(user.id).catch(() => null);
+        const accentColor = '#A259E6';
+        const infoColor = '#5E7381';
+        const warnColor = '#FFBF18';
+        const banColor = '#D12128';
 
         if (type === 'normales') {
             const fields = [
-                { name: 'Nom', value: user.tag, inline: true },
-                { name: 'ID', value: user.id, inline: true },
-                { name: 'Créé le', value: `<t:${Math.floor(user.createdTimestamp / 1000)}:F>`, inline: false }
+                { name: '👤 Nom', value: `	${user.tag}`, inline: true },
+                { name: '🆔 ID', value: `	${user.id}`, inline: true },
+                { name: '📅 Créé le', value: `<t:${Math.floor(user.createdTimestamp / 1000)}:F>`, inline: false }
             ];
             if (member) {
-                fields.push({ name: 'Arrivé sur le serveur', value: `<t:${Math.floor(member.joinedTimestamp / 1000)}:F>`, inline: false });
+                fields.push({ name: '📥 Arrivé sur le serveur', value: `<t:${Math.floor(member.joinedTimestamp / 1000)}:F>`, inline: false });
             }
             const embed = new EmbedBuilder()
-                .setTitle(`Informations sur ${user.username}`)
+                .setAuthor({ name: `Informations sur ${user.username}`, iconURL: user.displayAvatarURL() })
                 .setThumbnail(user.displayAvatarURL())
                 .addFields(fields)
-                .setColor('#5E7381')
+                .setColor(accentColor)
+                .setFooter({ text: `Demandé par ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL() })
                 .setTimestamp();
             return interaction.reply({ embeds: [embed] });
         }
@@ -51,17 +56,18 @@ module.exports = {
                 db.query('SELECT * FROM bans WHERE user = ?', [user.tag])
             ]);
             const roles = member ? member.roles.cache.filter(r => r.id !== interaction.guild.id).map(r => `<@&${r.id}>`).join(', ') || 'Aucun' : 'Aucun';
-            const warnsText = warns.length ? warns.map(w => `• ${w.reason} *(par ${w.author}, le ${w.date})*`).join('\n') : 'Aucun';
-            const bansText = bans.length ? bans.map(b => `• ${b.reason} *(par ${b.author}, le ${b.date})*`).join('\n') : 'Aucun';
+            const warnsText = warns.length ? warns.map(w => `- **${w.reason}**\n> par ${w.author} le ${new Date(w.date).toLocaleDateString('fr-FR')}`).join('\n\n') : 'Aucun';
+            const bansText = bans.length ? bans.map(b => `- **${b.reason}**\n> par ${b.author} le ${new Date(b.date).toLocaleDateString('fr-FR')}`).join('\n\n') : 'Aucun';
             const embed = new EmbedBuilder()
-                .setTitle(`Infos serveur pour ${user.username}`)
+                .setAuthor({ name: `Server info for ${user.username}`, iconURL: user.displayAvatarURL() })
                 .setThumbnail(user.displayAvatarURL())
                 .addFields(
-                    { name: 'Rôles', value: roles, inline: false },
-                    { name: 'Warns', value: warnsText, inline: false },
-                    { name: 'Bans', value: bansText, inline: false }
+                    { name: '🎭 Rôles', value: roles, inline: false },
+                    { name: '⚠️ Warns', value: warnsText, inline: false },
+                    { name: '🔨 Bans', value: bansText, inline: false }
                 )
-                .setColor('#5E7381')
+                .setColor(infoColor)
+                .setFooter({ text: `Demandé par ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL() })
                 .setTimestamp();
             return interaction.reply({ embeds: [embed] });
         } catch (err) {
