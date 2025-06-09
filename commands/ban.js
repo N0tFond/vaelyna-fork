@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, MessageFlags } = require('discord.js');
+const db = require('../db');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -48,6 +49,14 @@ module.exports = {
             await interaction.reply({ 
                 content: `🔨 → L'utilisateur ${memberUsername} a été banni par ${interaction.user.username} pour la raison : ${baseReason}!` 
             });
+            try {
+                await db.query(
+                    'INSERT INTO bans (author, user, reason, date) VALUES (?, ?, ?, ?)',
+                    [interaction.user.tag, member.user.tag, baseReason, new Date().toISOString()]
+                );
+            } catch (err) {
+                console.error('⚠️ → Erreur lors de l\'insertion du ban en base de données :', err);
+            }
             
             console.log(`🔨 → ${interaction.user.username} a banni ${memberUsername} pour la raison suivante : ${fullReason}`);
             

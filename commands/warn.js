@@ -1,12 +1,11 @@
 const { SlashCommandBuilder, MessageFlags, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 require('dotenv').config();
+const db = require('../db');
 
-// Constants
 const MAX_REASON_LENGTH = 1024;
 const WARN_EMOJI = '⚠️';
 const ANNOUNCEMENT_EMOJI = '📢';
 
-// Messages
 const MESSAGES = {
     NO_PERMISSION: "🙎 → Vous n'avez pas la permission d'utiliser cette commande.",
     ERROR_OCCURRED: "❌ → Une erreur est survenue lors de l'envoi de l'avertissement.",
@@ -40,21 +39,16 @@ module.exports = {
             const reason = interaction.options.getString("raison");
             const executor = interaction.user;
 
-            // Permission check
             if (!hasStaffPermission(interaction)) {
                 return await sendErrorReply(interaction, MESSAGES.NO_PERMISSION);
             }
 
-            // Validation checks
             const validationError = validateWarnTarget(interaction, targetUser);
             if (validationError) {
                 return await sendErrorReply(interaction, validationError);
             }
 
-            // Create and send warning
             await sendWarning(interaction, targetUser, executor, reason);
-
-            // Optional: Send DM to warned user
             await sendWarningDM(targetUser, executor, reason, interaction.guild);
 
         } catch (error) {
@@ -70,32 +64,23 @@ module.exports = {
     }
 };
 
-/**
- * Check if user has staff permissions
- */
 function hasStaffPermission(interaction) {
     const staffRoleId = process.env.STAFF_ROLE;
     return staffRoleId && interaction.member.roles.cache.has(staffRoleId);
 }
 
-/**
- * Validate the warning target
- */
 function validateWarnTarget(interaction, targetUser) {
     const executor = interaction.user;
     const staffRoleId = process.env.STAFF_ROLE;
 
-    // Can't warn yourself
     if (targetUser.id === executor.id) {
         return MESSAGES.SELF_WARN;
     }
 
-    // Can't warn bots
     if (targetUser.bot) {
         return MESSAGES.BOT_WARN;
     }
 
-    // Can't warn other staff members (if they're in the guild)
     const targetMember = interaction.guild.members.cache.get(targetUser.id);
     if (targetMember && staffRoleId && targetMember.roles.cache.has(staffRoleId)) {
         return MESSAGES.STAFF_WARN;
@@ -104,9 +89,6 @@ function validateWarnTarget(interaction, targetUser) {
     return null;
 }
 
-/**
- * Send error reply
- */
 async function sendErrorReply(interaction, message) {
     return await interaction.reply({ 
         content: message, 
@@ -114,9 +96,6 @@ async function sendErrorReply(interaction, message) {
     });
 }
 
-/**
- * Create and send the warning embed
- */
 async function sendWarning(interaction, targetUser, executor, reason) {
     const embed = new EmbedBuilder()
         .setTitle(`${WARN_EMOJI} Avertissement`)
@@ -147,11 +126,17 @@ async function sendWarning(interaction, targetUser, executor, reason) {
         });
 
     await interaction.reply({ embeds: [embed] });
+
+    try {
+        await db.query(
+            'INSERT INTO warns (author, user, reason, date) VALUES (?, ?, ?, ?)',
+            [executor.tag, targetUser.tag, reason, new Date().toISOString()]
+        );
+    } catch (err) {
+        console.error('⚠️ → Erreur lors de l\'insertion du warn en base de données :', err);
+    }
 }
 
-/**
- * Send warning DM to the user (optional)
- */
 async function sendWarningDM(targetUser, executor, reason, guild) {
     try {
         const dmEmbed = new EmbedBuilder()
@@ -175,14 +160,10 @@ async function sendWarningDM(targetUser, executor, reason, guild) {
 
         await targetUser.send({ embeds: [dmEmbed] });
     } catch (error) {
-        // Silently fail if DM can't be sent (user has DMs disabled)
         console.log(`Impossible d'envoyer un DM à ${targetUser.tag}: ${error.message}`);
     }
 }
 
-/**
- * Handle errors appropriately
- */
 async function handleError(interaction) {
     const errorMessage = MESSAGES.ERROR_OCCURRED;
     
